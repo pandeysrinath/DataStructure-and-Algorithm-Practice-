@@ -97,6 +97,39 @@ class Solution {
     }
 }
 
+Problem-4: https://leetcode.com/problems/maximum-product-subarray/
+
+class Solution {
+    public int maxProduct(int[] nums) {
+        int ans = Integer.MIN_VALUE;
+        boolean flag = false;
+        int rProd = 1;
+        int lProd = 1;
+        
+        for(int i = 0; i < nums.length; i++){
+            
+            rProd *= nums[i];
+            ans = Math.max(ans, rProd);
+            
+            if(nums[i] == 0){
+                //flag = true;
+                rProd = 1;
+            }
+        }
+        
+        for(int i = nums.length - 1; i >= 0; i--){
+            lProd *= nums[i];
+            ans = Math.max(ans, lProd);
+            
+            if(nums[i] == 0){
+                lProd = 1;
+            }
+        }
+           
+        return ans;
+    }
+}
+
 Problem-5: https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
 
 class Solution {
