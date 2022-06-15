@@ -158,7 +158,7 @@ public int[][] overlappedInterval(int[][] Intervals)
     class Solution {
     String printLargest(String[] arr) {
         // code here
-       Arrays.sort(arr,(x,y) -> (y+x).compareTo(x+y));  // Sorting of object in perticular ordering (Comparator, Compairable, lamda, Inner Class)
+       Arrays.sort(arr,(x,y) -> (y+x).compareTo(x+y));  // Sorting of object in perticular ordering (Comparator, Comparable, lambda, Inner Class)
        StringBuilder sb = new StringBuilder();
        for(String x:arr){
            sb.append(x);
@@ -167,5 +167,5 @@ public int[][] overlappedInterval(int[][] Intervals)
 
     }
 
-    // Read Comparator, Compairable, lamda, Inner Class
+    // Read Comparator, Compairable, lambda, Inner Class
 }
