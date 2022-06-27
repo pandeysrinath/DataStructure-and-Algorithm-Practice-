@@ -114,3 +114,79 @@ class Solution{
         return dp[0][0];
     }
 }
+
+Problem-3: https://practice.geeksforgeeks.org/problems/longest-prefix-suffix2527/1
+
+class Solution {
+    int lps(String s) {
+        // Using KMP Algorithm (TC: o(n), SC: O(n))
+        int n = s.length();
+        
+        int[] lps = new int[n];
+        int i = 0, j = 1;
+        lps[0] = 0;
+        
+        while(j < n){
+            if(s.charAt(i) == s.charAt(j)){
+                lps[j] = i + 1 ;
+                i++;
+                j++;
+                
+            }else{
+                if(i == 0){
+                    lps[j] = 0;
+                    j++;
+                }else{
+                    i = lps[i-1];
+                }
+            }
+        }
+        
+        return lps[n-1];
+    }
+}
+
+Problem-4: https://www.geeksforgeeks.org/rabin-karp-algorithm-for-pattern-searching/
+
+Problem-5: https://practice.geeksforgeeks.org/problems/b6b3297ccfb1ad5f66a9c2b92979170417adf114/1/
+
+class Solution
+{
+    int transfigure (String A, String B)
+    {
+    	// Your code goes here.
+    	if(A.length() != B.length())
+    	    return -1;
+    	    
+    	int[] freq = new int[256];
+    	
+    	for(int i = 0; i < A.length(); i++){
+    	    freq[(int)A.charAt(i)]++;
+    	    freq[(int)B.charAt(i)]--;
+    	}
+    	    
+    	for(int i = 0; i < freq.length; i++){
+    	    if(freq[i] != 0)
+    	        return -1;
+    	}
+    	
+    	int i = A.length() - 1, j = i;
+    	int count = 0;
+    	
+    	while(j >= 0 && i >= 0){
+    	    if(A.charAt(i) == B.charAt(j)){
+    	        i--;
+    	        j--;
+    	    } else {
+    	        count++;
+    	        i--;
+    	    }
+    	}
+    	
+    	return count;
+    }
+}
+
+Problem-6: https://www.geeksforgeeks.org/boyer-moore-algorithm-for-pattern-searching/
+
+Problem-7: https://practice.geeksforgeeks.org/problems/word-wrap1646/1
