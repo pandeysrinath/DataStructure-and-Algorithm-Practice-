@@ -1,0 +1,133 @@
+Problem-1: https://practice.geeksforgeeks.org/problems/first-non-repeating-character-in-a-stream1216/1/#
+
+class Solution
+{
+    public String FirstNonRepeating(String A)
+    {
+        // code here
+        StringBuilder sb = new StringBuilder();
+        HashSet set = new HashSet<>();
+        LinkedList  lst = new LinkedList();
+        
+        for(int i = 0; i < A.length(); i++){
+            Object ch = A.charAt(i);
+            
+            if(set.contains(ch)){
+                lst.remove(ch);
+            } else {
+                set.add(ch);
+                lst.addLast(ch);
+            }
+            
+            if(lst.size() > 0){
+                sb.append(lst.getFirst() + "");
+            } else {
+                sb.append("#");
+            }
+        }
+        
+        return sb.toString();
+    }
+}
+
+Problem-2: https://practice.geeksforgeeks.org/problems/the-celebrity-problem/1#
+
+class Solution
+{ 
+    //Function to find if there is a celebrity in the party or not.
+    int celebrity(int M[][], int n)
+    {
+    	// code here 
+    	Stack<Integer> st = new Stack<>();
+    	
+    	for(int i = 0; i < n; i++){
+    	    st.push(i);
+    	}
+    	
+    	while(st.size() > 1){
+    	    int p1 = st.pop();
+    	    int p2 = st.pop();
+    	    
+    	    if(M[p1][p2] == 1 || M[p2][p1] == 0){
+    	        // p2 may be celebrity
+    	        st.push(p2);
+    	    } else if(M[p2][p1] == 1 || M[p1][p2] == 0){
+    	        // p1 may be celebrity
+    	        st.push(p1);
+    	    }
+    	}
+    	
+    	int p = st.pop(); // Candidate for celebrety;
+    	
+    	for(int i = 0; i < n; i++){
+    	    if(i != p && (M[p][i] == 1 || M[i][p] == 0))
+    	        return -1;
+    	}
+    	
+    	return p;
+    }
+}
+
+Problem-3: https://practice.geeksforgeeks.org/problems/next-larger-element-1587115620/1
+
+class Solution
+{
+    //Function to find the next greater element for each element of the array.
+    public static long[] nextLargerElement(long[] arr, int n)
+    { 
+        long[] ans = new long[n];
+        
+        Stack<Long> st = new Stack<>();
+        
+        for(int i = n - 1; i >= 0; i--){
+            
+            while(!st.isEmpty() && st.peek() <= (long)arr[i]){
+                st.pop();
+            }
+            
+            if(st.isEmpty()) {
+                ans[i] = -1;
+            } else {
+                ans[i] = (long)st.peek();
+            }
+              
+            st.push((long)arr[i]);
+        }
+        
+        return ans;
+    } 
+}
+
+Problem-4: https://practice.geeksforgeeks.org/problems/distance-of-nearest-cell-having-1-1587115620/1
+
+Problem-5: https://practice.geeksforgeeks.org/problems/rotten-oranges2536/1
+
+Problem-7: https://www.geeksforgeeks.org/next-smaller-element/
+
+Problem-8: https://practice.geeksforgeeks.org/problems/circular-tour/1 
+
+class Solution
+{
+    //Function to find starting point where the truck can start to get through
+    //the complete circle without exhausting its petrol in between.
+    int tour(int petrol[], int distance[]) {
+	    // Your code here
+	    int n = petrol.length;
+        int deficit = 0;
+        int balance = 0;
+        int start = 0;
+        for(int i = 0; i < n ; i++){
+            balance += petrol[i] - distance[i];
+            if(balance < 0){
+                deficit += balance;
+                start = i+1;
+                balance = 0;
+                }
+       }
+       
+       if(deficit + balance >= 0)
+           return start;
+        else 
+           return -1;
+    }
+}
